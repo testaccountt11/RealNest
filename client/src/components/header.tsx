@@ -13,10 +13,10 @@ export default function Header() {
               <h1 className="text-2xl font-bold text-primary">RealNest</h1>
             </div>
             <nav className="hidden md:ml-8 md:flex md:space-x-8">
-              <a href="#" className="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">
+              <a href="/" className="text-gray-900 hover:text-primary px-3 py-2 text-sm font-medium">
                 Купить
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
+              <a href="/rent" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
                 Арендовать
               </a>
               <a href="#" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">

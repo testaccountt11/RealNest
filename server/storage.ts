@@ -200,6 +200,9 @@ export class MemStorage implements IStorage {
       publishedAt: new Date(),
       city: insertProperty.city || "Астана",
       currency: insertProperty.currency || "₸",
+      floor: insertProperty.floor || null,
+      totalFloors: insertProperty.totalFloors || null,
+      isFeatured: insertProperty.isFeatured || false,
     };
     this.properties.set(id, property);
     return property;
