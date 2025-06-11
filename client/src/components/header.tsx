@@ -22,12 +22,6 @@ export default function Header() {
               <a href="/about" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
                 О нас
               </a>
-              <a href="#" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
-                Продать
-              </a>
-              <a href="#" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
-                Сдать
-              </a>
             </nav>
           </div>
 
