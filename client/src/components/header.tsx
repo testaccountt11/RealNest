@@ -19,6 +19,9 @@ export default function Header() {
               <a href="/rent" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
                 Арендовать
               </a>
+              <a href="/guide" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
+                RealГид
+              </a>
               <a href="/news" className="text-gray-500 hover:text-primary px-3 py-2 text-sm font-medium">
                 Новости
               </a>
