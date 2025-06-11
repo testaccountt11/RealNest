@@ -210,14 +210,14 @@ export default function Guide() {
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-600 to-green-700 py-16">
+      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <BookOpen className="h-8 w-8 text-white" />
               <h1 className="text-4xl font-bold text-white">RealГид</h1>
             </div>
-            <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Полное руководство по покупке, аренде и инвестированию в недвижимость. 
               Экспертные советы и ответы на частые вопросы
             </p>
@@ -243,7 +243,7 @@ export default function Guide() {
         {/* Popular Articles */}
         <section className="mb-12">
           <div className="flex items-center gap-2 mb-6">
-            <Star className="h-6 w-6 text-green-600" />
+            <Star className="h-6 w-6 text-blue-600" />
             <h2 className="text-2xl font-bold text-gray-900">Популярные статьи</h2>
           </div>
           
@@ -252,8 +252,8 @@ export default function Guide() {
               <Card key={article.id} className="hover:shadow-lg transition-shadow cursor-pointer">
                 <CardHeader>
                   <div className="flex items-start justify-between mb-2">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                      <article.icon className="h-6 w-6 text-green-600" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <article.icon className="h-6 w-6 text-blue-600" />
                     </div>
                     <Badge className={getDifficultyColor(article.difficulty)}>
                       {getDifficultyLabel(article.difficulty)}
@@ -272,7 +272,7 @@ export default function Guide() {
                       <Clock className="h-4 w-4" />
                       {article.readTime}
                     </div>
-                    <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700">
+                    <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
                       Читать
                     </Button>
                   </div>
@@ -293,8 +293,8 @@ export default function Guide() {
                 variant={selectedCategory === category.value ? "default" : "outline"}
                 className={`h-auto p-4 flex flex-col gap-1 ${
                   selectedCategory === category.value 
-                    ? "bg-green-600 hover:bg-green-700" 
-                    : "hover:border-green-600 hover:text-green-600"
+                    ? "bg-blue-600 hover:bg-blue-700" 
+                    : "hover:border-blue-600 hover:text-blue-600"
                 }`}
                 onClick={() => setSelectedCategory(category.value)}
               >
@@ -337,8 +337,8 @@ export default function Guide() {
                 <Card key={article.id} className="hover:shadow-md transition-shadow cursor-pointer">
                   <CardHeader>
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <article.icon className="h-6 w-6 text-green-600" />
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <article.icon className="h-6 w-6 text-blue-600" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-2">
@@ -367,7 +367,7 @@ export default function Guide() {
                         <Clock className="h-4 w-4" />
                         {article.readTime}
                       </div>
-                      <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700">
+                      <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
                         Читать статью
                       </Button>
                     </div>
@@ -381,7 +381,7 @@ export default function Guide() {
         {/* FAQ Section */}
         <section className="mb-12">
           <div className="flex items-center gap-2 mb-6">
-            <HelpCircle className="h-6 w-6 text-green-600" />
+            <HelpCircle className="h-6 w-6 text-blue-600" />
             <h2 className="text-2xl font-bold text-gray-900">Часто задаваемые вопросы</h2>
           </div>
           
@@ -404,8 +404,8 @@ export default function Guide() {
         </section>
 
         {/* Help Section */}
-        <section className="bg-green-50 rounded-2xl p-8 text-center">
-          <Users className="h-12 w-12 text-green-600 mx-auto mb-4" />
+        <section className="bg-blue-50 rounded-2xl p-8 text-center">
+          <Users className="h-12 w-12 text-blue-600 mx-auto mb-4" />
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
             Нужна персональная консультация?
           </h3>
@@ -414,10 +414,10 @@ export default function Guide() {
             при покупке или аренде недвижимости
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-green-600 hover:bg-green-700">
+            <Button className="bg-blue-600 hover:bg-blue-700">
               Получить консультацию
             </Button>
-            <Button variant="outline" className="border-green-600 text-green-600 hover:bg-green-600 hover:text-white">
+            <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white">
               Задать вопрос
             </Button>
           </div>
