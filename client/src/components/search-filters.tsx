@@ -26,11 +26,11 @@ export default function SearchFilters({ onFiltersChange, totalResults }: SearchF
   const handleApplyFilters = () => {
     const apiFilters: any = {};
     
-    if (filters.district) apiFilters.district = filters.district;
-    if (filters.rooms) apiFilters.rooms = Number(filters.rooms);
+    if (filters.district && filters.district !== "all") apiFilters.district = filters.district;
+    if (filters.rooms && filters.rooms !== "any") apiFilters.rooms = Number(filters.rooms);
     if (filters.minPrice) apiFilters.minPrice = Number(filters.minPrice);
     if (filters.maxPrice) apiFilters.maxPrice = Number(filters.maxPrice);
-    if (filters.propertyType) apiFilters.propertyType = filters.propertyType;
+    if (filters.propertyType && filters.propertyType !== "any") apiFilters.propertyType = filters.propertyType;
     
     onFiltersChange(apiFilters);
   };
@@ -43,7 +43,7 @@ export default function SearchFilters({ onFiltersChange, totalResults }: SearchF
             <h2 className="text-2xl font-bold text-gray-900">Все объекты</h2>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
-                Найдено {totalResults.toLocaleString()} объектов
+                Найдено {totalResults?.toLocaleString() || 0} объектов
               </span>
               <Select value={filters.sortBy} onValueChange={(value) => handleFilterChange("sortBy", value)}>
                 <SelectTrigger className="w-48">
@@ -66,7 +66,7 @@ export default function SearchFilters({ onFiltersChange, totalResults }: SearchF
                 <SelectValue placeholder="Все районы" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Все районы</SelectItem>
+                <SelectItem value="all">Все районы</SelectItem>
                 <SelectItem value="Есиль">Есиль</SelectItem>
                 <SelectItem value="Сарыарка">Сарыарка</SelectItem>
                 <SelectItem value="Алматы">Алматы</SelectItem>
@@ -78,8 +78,8 @@ export default function SearchFilters({ onFiltersChange, totalResults }: SearchF
                 <SelectValue placeholder="Комнаты" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Любое количество</SelectItem>
-                <SelectItem value="1">Студия</SelectItem>
+                <SelectItem value="any">Любое количество</SelectItem>
+                <SelectItem value="0">Студия</SelectItem>
                 <SelectItem value="1">1 комната</SelectItem>
                 <SelectItem value="2">2 комнаты</SelectItem>
                 <SelectItem value="3">3+ комнат</SelectItem>
@@ -105,7 +105,7 @@ export default function SearchFilters({ onFiltersChange, totalResults }: SearchF
                 <SelectValue placeholder="Тип дома" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">Любой тип</SelectItem>
+                <SelectItem value="any">Любой тип</SelectItem>
                 <SelectItem value="apartment">Квартира</SelectItem>
                 <SelectItem value="house">Дом</SelectItem>
                 <SelectItem value="studio">Студия</SelectItem>
