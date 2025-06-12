@@ -2,7 +2,6 @@ import { useState } from "react";
 import Header from "@/components/header";
 import Hero from "@/components/hero";
 import FeaturedProperties from "@/components/featured-properties";
-import SearchFilters from "@/components/search-filters";
 import PropertyListings from "@/components/property-listings";
 import PropertyModal from "@/components/property-modal";
 import Footer from "@/components/footer";
@@ -22,7 +21,6 @@ export default function Home() {
       <Header />
       <Hero />
       <FeaturedProperties onPropertyClick={handlePropertyClick} />
-      <SearchFilters />
       <PropertyListings onPropertyClick={handlePropertyClick} />
       <Footer />
       
