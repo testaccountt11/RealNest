@@ -6,9 +6,10 @@ import type { Property } from "@shared/schema";
 interface PropertyCardProps {
   property: Property;
   featured?: boolean;
+  onPropertyClick?: (property: Property) => void;
 }
 
-export default function PropertyCard({ property, featured = false }: PropertyCardProps) {
+export default function PropertyCard({ property, featured = false, onPropertyClick }: PropertyCardProps) {
   const formatPrice = (price: number, currency: string) => {
     return `${price.toLocaleString()} ${currency}`;
   };
@@ -34,7 +35,7 @@ export default function PropertyCard({ property, featured = false }: PropertyCar
   const padding = featured ? "p-6" : "p-4";
 
   return (
-    <div className={cardClasses}>
+    <div className={cardClasses} onClick={() => onPropertyClick?.(property)} style={{ cursor: onPropertyClick ? 'pointer' : 'default' }}>
       <img 
         src={property.imageUrl} 
         alt={property.title}
@@ -89,7 +90,10 @@ export default function PropertyCard({ property, featured = false }: PropertyCar
             </span>
           </div>
           {featured && (
-            <Button variant="link" className="text-primary hover:text-primary/80 p-0">
+            <Button variant="link" className="text-primary hover:text-primary/80 p-0" onClick={(e) => {
+              e.stopPropagation();
+              onPropertyClick?.(property);
+            }}>
               Подробнее
             </Button>
           )}

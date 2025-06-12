@@ -3,7 +3,11 @@ import type { Property } from "@shared/schema";
 import PropertyCard from "./property-card";
 import { Button } from "@/components/ui/button";
 
-export default function FeaturedProperties() {
+interface FeaturedPropertiesProps {
+  onPropertyClick?: (property: Property) => void;
+}
+
+export default function FeaturedProperties({ onPropertyClick }: FeaturedPropertiesProps) {
   const { data: properties, isLoading } = useQuery<Property[]>({
     queryKey: ["/api/properties/featured"],
   });
@@ -36,7 +40,7 @@ export default function FeaturedProperties() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties?.map((property) => (
-            <PropertyCard key={property.id} property={property} featured />
+            <PropertyCard key={property.id} property={property} featured onPropertyClick={onPropertyClick} />
           ))}
         </div>
 

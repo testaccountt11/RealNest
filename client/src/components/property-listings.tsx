@@ -5,7 +5,11 @@ import PropertyCard from "./property-card";
 import SearchFilters from "./search-filters";
 import { Button } from "@/components/ui/button";
 
-export default function PropertyListings() {
+interface PropertyListingsProps {
+  onPropertyClick?: (property: Property) => void;
+}
+
+export default function PropertyListings({ onPropertyClick }: PropertyListingsProps) {
   const [filters, setFilters] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -52,7 +56,7 @@ export default function PropertyListings() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {properties.map((property) => (
-              <PropertyCard key={property.id} property={property} />
+              <PropertyCard key={property.id} property={property} onPropertyClick={onPropertyClick} />
             ))}
           </div>
 
