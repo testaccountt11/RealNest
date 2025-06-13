@@ -51,7 +51,7 @@ export default function PropertyCard({ property, featured = false, onPropertyCli
           </Button>
         </div>
         
-        <h3 className={`font-semibold text-gray-900 mb-1 ${featured ? "text-lg" : "text-sm"}`}>
+        <h3 className={`font-semibold text-gray-800 mb-1 ${featured ? "text-lg" : "text-sm"}`}>
           {property.title}
         </h3>
         
@@ -85,7 +85,7 @@ export default function PropertyCard({ property, featured = false, onPropertyCli
         
         <div className="flex items-center justify-between">
           <div>
-            <span className={`font-bold text-gray-900 ${featured ? "text-2xl" : "text-lg"}`}>
+            <span className={`font-bold text-gray-800 ${featured ? "text-2xl" : "text-lg"}`}>
               {formatPrice(property.price, property.currency)}
             </span>
           </div>

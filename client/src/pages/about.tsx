@@ -1,8 +1,10 @@
+import { motion } from "framer-motion";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 import { 
   Award, 
   Users, 
@@ -15,7 +17,9 @@ import {
   Building2,
   Target,
   Heart,
-  TrendingUp
+  TrendingUp,
+  ArrowRight,
+  CheckCircle
 } from "lucide-react";
 
 export default function About() {
@@ -49,46 +53,127 @@ export default function About() {
     }
   ];
 
-  const team = [
-    {
-      name: "Алексей Иванов",
-      position: "Генеральный директор",
-      experience: "12 лет в сфере недвижимости",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
-    },
-    {
-      name: "Марина Петрова",
-      position: "Директор по развитию",
-      experience: "8 лет в сфере недвижимости",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b4c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
-    },
-    {
-      name: "Дмитрий Сидоров",
-      position: "Технический директор",
-      experience: "10 лет в IT",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">О компании RealNest</h1>
-          <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Мы делаем поиск и аренду недвижимости простым, удобным и безопасным 
-            для каждого жителя Казахстана
-          </p>
-          <div className="flex items-center justify-center gap-2">
-            <Star className="h-5 w-5 text-yellow-400 fill-current" />
-            <Star className="h-5 w-5 text-yellow-400 fill-current" />
-            <Star className="h-5 w-5 text-yellow-400 fill-current" />
-            <Star className="h-5 w-5 text-yellow-400 fill-current" />
-            <Star className="h-5 w-5 text-yellow-400 fill-current" />
-            <span className="text-blue-100 ml-2">4.9 из 5 по отзывам клиентов</span>
+      <section className="relative bg-white">
+        {/* Декоративный фон */}
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-blue-50/50" />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+            {/* Текстовая колонка */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 space-y-8"
+            >
+              <div className="space-y-4">
+                <Badge className="bg-blue-100 text-blue-800 px-4 py-1">8 лет на рынке недвижимости</Badge>
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
+                  Мы создаем 
+                  <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                    будущее недвижимости
+                  </span>
+                </h1>
+                <p className="text-lg text-gray-600">
+                  Объединяем технологии и опыт для создания лучшего опыта поиска 
+                  и покупки недвижимости в Казахстане
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white rounded-xl p-4 shadow-sm">
+                  <Users className="h-6 w-6 text-blue-600 mb-2" />
+                  <div className="font-semibold text-gray-900">15,000+</div>
+                  <div className="text-sm text-gray-600">Довольных клиентов</div>
+                </div>
+                <div className="bg-white rounded-xl p-4 shadow-sm">
+                  <Building2 className="h-6 w-6 text-blue-600 mb-2" />
+                  <div className="font-semibold text-gray-900">50,000+</div>
+                  <div className="text-sm text-gray-600">Объектов в базе</div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  size="lg" 
+                  className="bg-blue-600 hover:bg-blue-700"
+                  onClick={() => window.location.href = '/'}
+                >
+                  Начать поиск
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2"
+                  onClick={() => {
+                    document.getElementById('about-history')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                >
+                  О компании
+                </Button>
+              </div>
+
+              <div className="pt-6 border-t">
+                <div className="flex items-center gap-4">
+                  <div className="flex -space-x-2">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-blue-100 flex items-center justify-center">
+                        <Star className="h-4 w-4 text-blue-600" />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">4.9 из 5</div>
+                    <div className="text-sm text-gray-600">На основе 3,200+ отзывов</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Колонка с изображением */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-7 relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden bg-gradient-to-br from-blue-100 to-blue-50 p-2">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10" />
+                
+                <img 
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+                  alt="RealNest Office"
+                  className="w-full rounded-xl"
+                />
+
+                <div className="absolute left-4 bottom-4 right-4 z-20">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 flex items-center gap-3">
+                      <Award className="h-5 w-5 text-blue-600" />
+                      <div className="text-sm font-medium text-gray-900">Топ-1 сервис</div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 flex items-center gap-3">
+                      <MapPin className="h-5 w-5 text-blue-600" />
+                      <div className="text-sm font-medium text-gray-900">20+ городов</div>
+                    </div>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 flex items-center gap-3">
+                      <Clock className="h-5 w-5 text-blue-600" />
+                      <div className="text-sm font-medium text-gray-900">24/7 поддержка</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Декоративные элементы */}
+              <div className="absolute -z-10 top-1/3 right-0 w-1/2 h-1/2 bg-blue-100/30 rounded-full blur-3xl" />
+              <div className="absolute -z-10 bottom-1/3 left-0 w-1/2 h-1/2 bg-indigo-100/30 rounded-full blur-3xl" />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -111,7 +196,7 @@ export default function About() {
       </section>
 
       {/* About Section */}
-      <section className="py-16 bg-gray-50">
+      <section id="about-history" className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -158,7 +243,7 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 pb-48 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <Badge className="mb-4 bg-blue-100 text-blue-800">Наши ценности</Badge>
@@ -187,79 +272,6 @@ export default function About() {
                 </CardContent>
               </Card>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <Badge className="mb-4 bg-blue-100 text-blue-800">Наша команда</Badge>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Эксперты, которые делают RealNest лучше
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Познакомьтесь с профессионалами, которые стоят за успехом нашей платформы
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="text-center border-0 shadow-sm">
-                <CardHeader>
-                  <img 
-                    src={member.image}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  />
-                  <CardTitle className="text-xl">{member.name}</CardTitle>
-                  <p className="text-blue-600 font-medium">{member.position}</p>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">{member.experience}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 bg-blue-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Готовы начать поиск недвижимости?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Присоединяйтесь к тысячам довольных клиентов и найдите свой идеальный дом уже сегодня
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-              Начать поиск
-            </Button>
-            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
-              <Phone className="h-5 w-5 mr-2" />
-              Связаться с нами
-            </Button>
-          </div>
-          
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <Phone className="h-8 w-8 text-blue-200 mx-auto mb-3" />
-              <div className="text-white font-medium">Телефон</div>
-              <div className="text-blue-100">+7 (7172) 123-456</div>
-            </div>
-            <div>
-              <Mail className="h-8 w-8 text-blue-200 mx-auto mb-3" />
-              <div className="text-white font-medium">Email</div>
-              <div className="text-blue-100">info@realnest.kz</div>
-            </div>
-            <div>
-              <MapPin className="h-8 w-8 text-blue-200 mx-auto mb-3" />
-              <div className="text-white font-medium">Офис</div>
-              <div className="text-blue-100">г. Астана, пр. Кунаева, 12</div>
-            </div>
           </div>
         </div>
       </section>

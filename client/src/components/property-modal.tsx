@@ -160,7 +160,7 @@ export default function PropertyModal({ property, open, onOpenChange }: Property
                       {formatDate(property.publishedAt)}
                     </span>
                   </div>
-                  <DialogTitle className="text-2xl font-bold text-gray-900 mb-2">
+                  <DialogTitle className="text-2xl font-bold text-gray-800 mb-2">
                     {property.title}
                   </DialogTitle>
                   <div className="flex items-center text-gray-600 mb-4">

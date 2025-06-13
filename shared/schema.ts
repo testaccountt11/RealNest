@@ -28,7 +28,27 @@ export const insertPropertySchema = createInsertSchema(properties).omit({
 });
 
 export type InsertProperty = z.infer<typeof insertPropertySchema>;
-export type Property = typeof properties.$inferSelect;
+
+// Unified Property type that includes all fields
+export type Property = {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  currency: string;
+  type: string;
+  propertyType: string;
+  area: number;
+  rooms: number;
+  floor: number | null;
+  totalFloors: number | null;
+  address: string;
+  district: string;
+  city: string;
+  imageUrl: string;
+  isFeatured: boolean;
+  publishedAt: Date;
+};
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
