@@ -17,5 +17,12 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    outDir: '../dist/public',
+    emptyOutDir: true
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom']
   }
 }); 

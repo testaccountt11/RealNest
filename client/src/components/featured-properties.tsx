@@ -9,9 +9,18 @@ interface FeaturedPropertiesProps {
   onPropertyClick?: (property: Property) => void;
 }
 
+async function fetchFeaturedProperties(): Promise<Property[]> {
+  const response = await fetch('/api/properties/featured');
+  if (!response.ok) {
+    throw new Error('Failed to fetch featured properties');
+  }
+  return response.json();
+}
+
 export default function FeaturedProperties({ onPropertyClick }: FeaturedPropertiesProps) {
   const { data: properties, isLoading } = useQuery<Property[]>({
     queryKey: ["/api/properties/featured"],
+    queryFn: fetchFeaturedProperties,
   });
 
   if (isLoading) {

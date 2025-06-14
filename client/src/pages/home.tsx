@@ -17,7 +17,7 @@ import { Filter, MapPin } from "lucide-react";
 import type { Property } from "@shared/schema";
 import { MapSection } from "@/components/map-section";
 import { HowItWorks } from "@/components/how-it-works";
-import { CTASection } from "@/components/cta-section";
+import { ContactForm } from "@/components/contact-form";
 
 export default function Home() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
@@ -341,13 +341,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Добавляем форму заявки */}
+      <ContactForm />
+
       <PropertyModal
         property={selectedProperty}
         open={isModalOpen}
         onOpenChange={setIsModalOpen}
       />
       
-      <CTASection />
       <Footer />
     </div>
   );
