@@ -1,4 +1,32 @@
-import { properties, users, type Property, type InsertProperty, type User, type InsertUser } from "@shared/schema";
+// Define all types locally since we removed the database
+export type Property = {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  currency: string;
+  type: string; // "sale" | "rent"
+  propertyType: string; // "apartment" | "house" | "studio" | "commercial"
+  area: number;
+  rooms: number;
+  floor: number | null;
+  totalFloors: number | null;
+  address: string;
+  district: string;
+  city: string;
+  imageUrl: string;
+  isFeatured: boolean;
+  publishedAt: Date;
+};
+
+export type User = {
+  id: number;
+  username: string;
+  password: string;
+};
+
+export type InsertProperty = Omit<Property, 'id' | 'publishedAt'>;
+export type InsertUser = Omit<User, 'id'>;
 
 export interface IStorage {
   // Property methods
@@ -667,7 +695,7 @@ export class MemStorage implements IStorage {
       }
     }
 
-    return result.sort((a, b) => new Date(b.publishedAt!).getTime() - new Date(a.publishedAt!).getTime());
+    return result.sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
   }
 
   async getProperty(id: number): Promise<Property | undefined> {
@@ -678,20 +706,15 @@ export class MemStorage implements IStorage {
     return Array.from(this.properties.values()).filter(p => p.isFeatured);
   }
 
-  async createProperty(insertProperty: InsertProperty): Promise<Property> {
+  async createProperty(property: InsertProperty): Promise<Property> {
     const id = this.currentPropertyId++;
-    const property: Property = {
+    const newProperty: Property = {
+      ...property,
       id,
-      ...insertProperty,
-      publishedAt: new Date(),
-      city: insertProperty.city || "Астана",
-      currency: insertProperty.currency || "₸",
-      floor: insertProperty.floor || null,
-      totalFloors: insertProperty.totalFloors || null,
-      isFeatured: insertProperty.isFeatured || false,
+      publishedAt: new Date()
     };
-    this.properties.set(id, property);
-    return property;
+    this.properties.set(id, newProperty);
+    return newProperty;
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -700,7 +723,7 @@ export class MemStorage implements IStorage {
 
   async getUserByUsername(username: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.username === username
     );
   }
 
@@ -712,4 +735,5 @@ export class MemStorage implements IStorage {
   }
 }
 
+// Export a single instance to be used throughout the application
 export const storage = new MemStorage();

@@ -1,43 +1,12 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
-
-export const properties = pgTable("properties", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  price: integer("price").notNull(),
-  currency: text("currency").notNull().default("₸"),
-  type: text("type").notNull(), // "sale" | "rent"
-  propertyType: text("property_type").notNull(), // "apartment" | "house" | "studio"
-  area: integer("area").notNull(), // in square meters
-  rooms: integer("rooms").notNull(),
-  floor: integer("floor"),
-  totalFloors: integer("total_floors"),
-  address: text("address").notNull(),
-  district: text("district").notNull(),
-  city: text("city").notNull().default("Астана"),
-  imageUrl: text("image_url").notNull(),
-  isFeatured: boolean("is_featured").default(false),
-  publishedAt: timestamp("published_at").defaultNow(),
-});
-
-export const insertPropertySchema = createInsertSchema(properties).omit({
-  id: true,
-  publishedAt: true,
-});
-
-export type InsertProperty = z.infer<typeof insertPropertySchema>;
-
-// Unified Property type that includes all fields
+// Basic types without database dependencies
 export type Property = {
   id: number;
   title: string;
   description: string;
   price: number;
   currency: string;
-  type: string;
-  propertyType: string;
+  type: string; // "sale" | "rent"
+  propertyType: string; // "apartment" | "house" | "studio"
   area: number;
   rooms: number;
   floor: number | null;
@@ -50,16 +19,12 @@ export type Property = {
   publishedAt: Date;
 };
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
-});
+export type User = {
+  id: number;
+  username: string;
+  password: string;
+};
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
-
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+// Types for creating new entities (without id and auto-generated fields)
+export type InsertProperty = Omit<Property, 'id' | 'publishedAt'>;
+export type InsertUser = Omit<User, 'id'>; 
